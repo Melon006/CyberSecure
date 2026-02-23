@@ -1,1 +1,72 @@
+body{
+margin:0;
+background:#020617;
+font-family:monospace;
+color:#00ffe1;
+overflow:hidden;
+}
 
+/* HUD PANEL */
+
+.hud{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:85%;
+height:85%;
+backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.45);
+border:1px solid #00ffe1;
+box-shadow:0 0 40px #00ffe1;
+padding:30px;
+}
+
+/* TITLE */
+
+h1{
+text-align:center;
+text-shadow:0 0 25px cyan;
+}
+
+/* INPUT */
+
+input{
+width:60%;
+padding:14px;
+background:black;
+border:1px solid cyan;
+color:#00ffe1;
+}
+
+/* BUTTON */
+
+button{
+padding:14px 25px;
+background:transparent;
+border:1px solid cyan;
+color:#00ffe1;
+cursor:pointer;
+}
+
+button:hover{
+box-shadow:0 0 20px cyan;
+}
+
+/* TERMINAL */
+
+#terminal{
+margin-top:25px;
+height:65%;
+overflow:auto;
+background:black;
+padding:20px;
+box-shadow:0 0 25px cyan inset;
+}
+
+/* BACKGROUND CANVAS */
+
+canvas{
+position:fixed;
+z-index:-1;
+}
