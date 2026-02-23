@@ -1,25 +1,24 @@
-const socket = io();
+const socket=io();
 
-function type(msg){
+function type(text){
 
-let term =
-document.getElementById("terminal");
+let term=document.getElementById("terminal");
 
 let i=0;
 
-let interval=setInterval(()=>{
+let inter=setInterval(()=>{
 
-term.innerHTML+=msg[i];
+term.innerHTML+=text[i];
 i++;
 
-if(i>=msg.length){
+if(i>=text.length){
 term.innerHTML+="<br>";
-clearInterval(interval);
+clearInterval(inter);
 }
 
 term.scrollTop=term.scrollHeight;
 
-},5);
+},3);
 }
 
 function startScan(){
