@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>CyberSecure ULTRA</title>
+
+<title>CyberSecure Nexus</title>
 
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 
@@ -14,25 +14,63 @@
 
 <canvas id="bg"></canvas>
 
-<div class="hud">
+<div class="boot" id="boot">
+INITIALIZING CYBERSECURE NEXUS...
+</div>
 
-<h1>⚡ CYBERSECURE ULTRA</h1>
+<div class="container">
 
-<div class="control">
+<header>
+<h1>⚡ CYBERSECURE NEXUS</h1>
+<div class="status">SYSTEM ONLINE</div>
+</header>
+
+<div class="grid">
+
+<!-- LEFT PANEL -->
+<div class="panel">
+
+<h3>TARGET CONTROL</h3>
 
 <input id="target"
-placeholder="ENTER TARGET DOMAIN/IP">
+placeholder="ENTER DOMAIN/IP">
 
 <button onclick="startScan()">
-INITIATE SCAN
+LAUNCH RECON
 </button>
+
+<div class="radar"></div>
 
 </div>
 
+<!-- RIGHT PANEL -->
+<div class="panel big">
+
+<h3>LIVE TERMINAL</h3>
 <div id="terminal"></div>
 
 </div>
 
+<!-- SYSTEM PANEL -->
+<div class="panel">
+
+<h3>SYSTEM STATUS</h3>
+
+<p>CPU: ACTIVE</p>
+<p>SCAN ENGINE: READY</p>
+<p>NETWORK: SECURE</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="/static/background.js"></script>
+<script src="/static/ultra.js"></script>
+
+</body>
+</html>
 <script src="/static/background.js"></script>
 <script src="/static/ultra.js"></script>
 
