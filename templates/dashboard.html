@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+<title>CyberSecure ULTRA</title>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="hud">
+
+<h1>⚡ CYBERSECURE ULTRA</h1>
+
+<div class="control">
+
+<input id="target"
+placeholder="ENTER TARGET DOMAIN/IP">
+
+<button onclick="startScan()">
+INITIATE SCAN
+</button>
+
+</div>
+
+<div id="terminal"></div>
+
+</div>
+
+<script src="/static/background.js"></script>
+<script src="/static/ultra.js"></script>
+
+</body>
+</html>
