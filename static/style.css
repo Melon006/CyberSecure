@@ -6,118 +6,95 @@ color:#00f7ff;
 overflow:hidden;
 }
 
-/* BOOT SCREEN */
-
-.boot{
-position:absolute;
+/* GRID BACKGROUND */
+body::before{
+content:"";
+position:fixed;
 width:100%;
 height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:28px;
-animation:bootfade 3s forwards;
-z-index:5;
+background:
+linear-gradient(#00f7ff22 1px,transparent 1px),
+linear-gradient(90deg,#00f7ff22 1px,transparent 1px);
+background-size:40px 40px;
+animation:gridMove 8s linear infinite;
+z-index:-1;
 }
 
-@keyframes bootfade{
-80%{opacity:1;}
-100%{opacity:0;visibility:hidden;}
-}
-
-/* MAIN */
-
-.container{
-padding:30px;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-}
-
-.status{
-color:#00ff88;
-text-shadow:0 0 10px #00ff88;
-}
-
-/* GRID */
-
-.grid{
-display:grid;
-grid-template-columns:1fr 2fr 1fr;
-gap:20px;
-margin-top:20px;
+@keyframes gridMove{
+0%{transform:translateY(0);}
+100%{transform:translateY(40px);}
 }
 
 /* PANELS */
 
 .panel{
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(20px);
+background:rgba(0,0,0,.5);
 border:1px solid cyan;
 padding:20px;
-box-shadow:0 0 20px cyan;
-border-radius:10px;
-}
-
-.big{
-height:500px;
-}
-
-/* INPUT */
-
-input{
-width:100%;
-padding:12px;
-background:black;
-border:1px solid cyan;
-color:#00f7ff;
-}
-
-/* BUTTON */
-
-button{
-margin-top:10px;
-padding:12px;
-background:transparent;
-border:1px solid cyan;
-color:#00f7ff;
-cursor:pointer;
-}
-
-button:hover{
+border-radius:12px;
 box-shadow:0 0 25px cyan;
+animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+50%{box-shadow:0 0 40px cyan;}
 }
 
 /* TERMINAL */
 
 #terminal{
+height:480px;
 background:black;
-height:420px;
 overflow:auto;
 padding:15px;
-box-shadow:0 0 25px cyan inset;
+box-shadow:0 0 30px cyan inset;
+color:#00ff88;
 }
 
 /* RADAR */
 
 .radar{
-margin-top:20px;
-width:150px;
-height:150px;
+width:180px;
+height:180px;
 border-radius:50%;
 border:2px solid cyan;
-animation:spin 4s linear infinite;
-box-shadow:0 0 30px cyan inset;
+position:relative;
+margin:auto;
+animation:spin 5s linear infinite;
+}
+
+.radar::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+border-radius:50%;
+background:radial-gradient(circle,
+transparent 60%,
+#00f7ff55);
+animation:scan 2s infinite;
 }
 
 @keyframes spin{
 100%{transform:rotate(360deg);}
 }
 
-canvas{
-position:fixed;
-z-index:-1;
+@keyframes scan{
+0%{opacity:.2;}
+50%{opacity:1;}
+100%{opacity:.2;}
+}
+
+/* BUTTON */
+
+button{
+background:black;
+color:#00f7ff;
+border:1px solid cyan;
+padding:12px;
+cursor:pointer;
+}
+
+button:hover{
+box-shadow:0 0 20px cyan;
 }
