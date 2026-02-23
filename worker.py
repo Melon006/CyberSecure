@@ -1,34 +1,52 @@
 import subprocess
+from urllib.parse import urlparse
 
-def run_scan(socketio, target):
+def clean_target(target):
 
-    tools = [
-        ("Recon Init", f"ping -c 2 {target}"),
-        ("Nmap Scan", f"nmap -F {target}"),
-        ("Whois Lookup", f"whois {target}")
+    if "http" in target:
+        target = urlparse(target).netloc
+
+    return target.replace("www.","")
+
+
+def run_scan(socketio,target):
+
+    target = clean_target(target)
+
+    socketio.emit(
+        "update",
+        f"[SYSTEM] Target Locked → {target}\n"
+    )
+
+    tools=[
+        ("Ping",f"ping -c 2 {target}"),
+        ("Nmap Fast Scan",f"nmap -F {target}"),
+        ("Whois",f"whois {target}")
     ]
 
-    socketio.emit("update",
-    "[SYSTEM] Initializing Cyber Engine...\n")
+    for name,cmd in tools:
 
-    for name, cmd in tools:
-
-        socketio.emit("update",
-        f"\n[+] {name} Started...\n")
+        socketio.emit(
+        "update",
+        f"\n[+] Running {name}...\n")
 
         try:
-            result = subprocess.check_output(
+            result=subprocess.check_output(
                 cmd,
                 shell=True,
                 stderr=subprocess.STDOUT
             ).decode(errors="ignore")
 
-            socketio.emit("update",
-            result[:2000])
+            socketio.emit(
+                "update",
+                result[:1500])
 
-        except:
-            socketio.emit("update",
-            "Execution Failed")
+        except Exception as e:
+            socketio.emit(
+                "update",
+                f"Scan Failed: {name}\n")
 
-    socketio.emit("update",
-    "\n[SYSTEM] Scan Completed ✓")
+    socketio.emit(
+        "update",
+        "\n✓ Recon Completed"
+    )
